@@ -2,3 +2,9 @@ name: Pets
 version: 1.0
 author: Chaosmatter
 main: de.chaosmatter.pets.Pets
+
+commands:
+  pet:
+
+
+  pets:
