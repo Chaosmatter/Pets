@@ -31,20 +31,31 @@ public class PetManager {
         Pet pet = new Pet(uuid, entityType);
         this.petMap.put(uuid, pet);
         pet.spawn();
+        pet.getOwner().sendMessage(Pets.getInstance().getConfigManager().getCreatedPet());
         return pet;
     }
 
     public void removePet(Pet pet) {
         pet.deSpawn();
         this.petMap.remove(pet.getOwner().getUniqueId(), pet);
+        pet.getOwner().sendMessage(Pets.getInstance().getConfigManager().getRemovedPet());
     }
 
     public void renamePet(Pet pet, String newName) {
         pet.setDisplayName(newName);
+        pet.getOwner().sendMessage(Pets.getInstance().getConfigManager().getUpdatedPet());
     }
 
     public void changePetType(Pet pet, EntityType newEntityType) {
         pet.changeType(newEntityType);
+        pet.getOwner().sendMessage(Pets.getInstance().getConfigManager().getUpdatedPet());
+    }
+
+    public void removeAllPets() {
+        for(Pet pet : this.petMap.values()) {
+            pet.deSpawn();
+        }
+        petMap.clear();
     }
 
 }
