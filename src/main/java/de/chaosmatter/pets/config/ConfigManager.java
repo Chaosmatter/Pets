@@ -21,6 +21,7 @@ public class ConfigManager {
         this.plugin.getConfig().addDefault("RemovedAllPetsPlayer", "%prefix% &aDu hast erfolgreich alle Haustiere entfernt!");
         this.plugin.getConfig().addDefault("RemovedAllPetsBroadcast", "%prefix% &4Es wurden alle Haustiere entfernt!");
         this.plugin.getConfig().addDefault("UpdatedPetProperties", "%prefix% &eDein Haustier wurde aktualisiert.");
+        this.plugin.getConfig().addDefault("HaveNoPet", "%prefix% &cDu hast noch kein Haustier!");
 
         this.plugin.getConfig().options().copyDefaults(true);
         this.plugin.saveConfig();
@@ -29,9 +30,10 @@ public class ConfigManager {
         this.noPermission = Objects.requireNonNull(this.plugin.getConfig().getString("NoPermission")).replace("&", "§").replace("%prefix%", this.prefix);
         this.createdPet = Objects.requireNonNull(this.plugin.getConfig().getString("CreatedPet")).replace("&", "§").replace("%prefix%", this.prefix);
         this.removedPet = Objects.requireNonNull(this.plugin.getConfig().getString("RemovedPet")).replace("&", "§").replace("%prefix", this.prefix);
-        this.removedAllPetsPlayer = Objects.requireNonNull(this.plugin.getConfig().getString("RemovedAllPetsPlayer").replace("&", "§").replace("%prefix%", this.prefix));
-        this.removedAllPetsBroadcast = Objects.requireNonNull(this.plugin.getConfig().getString("RemovedAllPetsBroadcast").replace("&", "§").replace("%prefix%", this.prefix));
-        this.updatedPet = Objects.requireNonNull(this.plugin.getConfig().getString("UpdatedPetProperties").replace("&", "§").replace("%prefix%", this.prefix));
+        this.removedAllPetsPlayer = Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("RemovedAllPetsPlayer")).replace("&", "§").replace("%prefix%", this.prefix));
+        this.removedAllPetsBroadcast = Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("RemovedAllPetsBroadcast")).replace("&", "§").replace("%prefix%", this.prefix));
+        this.updatedPet = Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("UpdatedPetProperties")).replace("&", "§").replace("%prefix%", this.prefix));
+        this.haveNoPet = Objects.requireNonNull(this.plugin.getConfig().getString("HaveNoPet")).replace("&", "§").replace("%prefix%", this.prefix);
     }
 
     @Getter
@@ -48,4 +50,6 @@ public class ConfigManager {
     private String removedAllPetsBroadcast;
     @Getter
     private String updatedPet;
+    @Getter
+    private String haveNoPet;
 }
