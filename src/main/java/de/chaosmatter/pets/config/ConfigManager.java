@@ -22,6 +22,7 @@ public class ConfigManager {
         this.plugin.getConfig().addDefault("RemovedAllPetsBroadcast", "%prefix% &4Es wurden alle Haustiere entfernt!");
         this.plugin.getConfig().addDefault("UpdatedPetProperties", "%prefix% &eDein Haustier wurde aktualisiert.");
         this.plugin.getConfig().addDefault("HaveNoPet", "%prefix% &cDu hast noch kein Haustier!");
+        this.plugin.getConfig().addDefault("HavePetAlready", "%prefix% &cDu hast bereits ein Haustier!");
 
         this.plugin.getConfig().options().copyDefaults(true);
         this.plugin.saveConfig();
@@ -34,6 +35,7 @@ public class ConfigManager {
         this.removedAllPetsBroadcast = Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("RemovedAllPetsBroadcast")).replace("&", "§").replace("%prefix%", this.prefix));
         this.updatedPet = Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("UpdatedPetProperties")).replace("&", "§").replace("%prefix%", this.prefix));
         this.haveNoPet = Objects.requireNonNull(this.plugin.getConfig().getString("HaveNoPet")).replace("&", "§").replace("%prefix%", this.prefix);
+        this.havePetAlready = Objects.requireNonNull(this.plugin.getConfig().getString("HavePetAlready")).replace("&", "§").replace("%prefix%", this.prefix);
     }
 
     @Getter
@@ -52,4 +54,6 @@ public class ConfigManager {
     private String updatedPet;
     @Getter
     private String haveNoPet;
+    @Getter
+    private String havePetAlready;
 }

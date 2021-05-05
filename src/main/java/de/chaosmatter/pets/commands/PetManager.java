@@ -3,7 +3,6 @@ package de.chaosmatter.pets.commands;
 import de.chaosmatter.pets.Pet;
 import de.chaosmatter.pets.Pets;
 import lombok.Getter;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
 import java.util.HashMap;
@@ -27,12 +26,11 @@ public class PetManager {
         return this.petMap.get(uuid);
     }
 
-    public Pet createPet(UUID uuid, EntityType entityType) {
+    public void createPet(UUID uuid, EntityType entityType) {
         Pet pet = new Pet(uuid, entityType);
         this.petMap.put(uuid, pet);
         pet.spawn();
         pet.getOwner().sendMessage(Pets.getInstance().getConfigManager().getCreatedPet());
-        return pet;
     }
 
     public void removePet(Pet pet) {

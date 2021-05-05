@@ -36,6 +36,15 @@ public class PetCommand implements CommandExecutor {
                     //todo create pet gui
                     return false;
                 }
+                if(args[0].equalsIgnoreCase("create") || args[0].equalsIgnoreCase("spawn")) {
+                    if(this.plugin.getPetManager().getPetMap().containsKey(player.getUniqueId())) {
+                        player.sendMessage(this.plugin.getConfigManager().getHavePetAlready());
+                        return false;
+                    }
+                    EntityType entityType = EntityType.valueOf(args[1]);
+                    this.plugin.getPetManager().createPet(player.getUniqueId(), entityType);
+                    return false;
+                }
                 if(args[0].equalsIgnoreCase("remove")) {
                     if(this.plugin.getPetManager().getPetMap().containsKey(player.getUniqueId())) {
                         this.plugin.getPetManager().removePet(this.plugin.getPetManager().getPet(player.getUniqueId()));
@@ -47,7 +56,7 @@ public class PetCommand implements CommandExecutor {
 
                 if(args[0].equalsIgnoreCase("changetype")) {
                     if(this.plugin.getPetManager().getPetMap().containsKey(player.getUniqueId())) {
-                        EntityType entityType = EntityType.valueOf(args[0]);
+                        EntityType entityType = EntityType.valueOf(args[1]);
                         this.plugin.getPetManager().changePetType(this.plugin.getPetManager().getPet(player.getUniqueId()), entityType);
                         return false;
                     }
@@ -57,7 +66,7 @@ public class PetCommand implements CommandExecutor {
 
                 if(args[0].equalsIgnoreCase("rename")) {
                     if(this.plugin.getPetManager().getPetMap().containsKey(player.getUniqueId())) {
-                        this.plugin.getPetManager().renamePet(this.plugin.getPetManager().getPet(player.getUniqueId()), args[0].replace("&", "§"));
+                        this.plugin.getPetManager().renamePet(this.plugin.getPetManager().getPet(player.getUniqueId()), args[1].replace("&", "§"));
                         return false;
                     }
                     player.sendMessage(this.plugin.getConfigManager().getHaveNoPet());
